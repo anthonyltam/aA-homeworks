@@ -8,7 +8,7 @@ Instructions: implement all of the pending specs (the `it` statements without bl
 describe Dessert do
 
 
-  let(:chef) { double("chef", name: 'blake') }
+  let(:chef) { double("chef", name: 'Blake') }
   subject(:brownie) { Dessert.new("brownie", 50, chef) }
 
   describe "#initialize" do
@@ -39,7 +39,7 @@ describe Dessert do
 
   describe "#mix!" do
     it "shuffles the ingredient array" do
-      ingredients = ['sugar', 'chocolate', 'pizza']
+      ingredients = ['sugar', 'chocolate', 'pizza', 'pineapple', 'blueberry', 'syrup']
 
       ingredients.each do |ing|
         brownie.add_ingredient(ing)
@@ -55,19 +55,19 @@ describe Dessert do
   describe "#eat" do
     it "subtracts an amount from the quantity" do
       expect(brownie.quantity).to eq(50)
-      brownie.eat(20)
-      expect(brownie.quantity).to eq(30)
+      brownie.eat(10)
+      expect(brownie.quantity).to eq(40)
     end
 
     it "raises an error if the amount is greater than the quantity" do
-      expect { brownie.eat(120) }.to raise_error("not enough left!")
+      expect { brownie.eat(60) }.to raise_error("not enough left!")
     end
   end
 
   describe "#serve" do
     it "contains the titleized version of the chef's name" do
-      allow(chef).to receive(:titleize).and_return("Chef blake the Great Baker")
-      expect(brownie.serve).to eq('Chef blake the Great Baker has made 50 brownies!')
+      allow(chef).to receive(:titleize).and_return("Chef Blake the Great Baker")
+      expect(brownie.serve).to eq('Chef Blake the Great Baker has made 50 brownies!')
     end
   end
 
